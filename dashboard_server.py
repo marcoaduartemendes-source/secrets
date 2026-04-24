@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import subprocess
+import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -12,8 +14,8 @@ ARTIFACTS = ROOT / "artifacts"
 
 
 class Handler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=str(ARTIFACTS), **kwargs)
+    def __init__(self, *args, directory: str, **kwargs):
+        super().__init__(*args, directory=directory, **kwargs)
 
     def _json(self, code: int, payload: dict) -> None:
         raw = json.dumps(payload).encode("utf-8")
@@ -42,8 +44,7 @@ class Handler(SimpleHTTPRequestHandler):
             str(ARTIFACTS),
         ]
 
-        env = os.environ.copy()
-        proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
+        proc = subprocess.run(cmd, capture_output=True, text=True, env=os.environ.copy())
         ok = proc.returncode == 0
         payload = {
             "ok": ok,
@@ -54,8 +55,26 @@ class Handler(SimpleHTTPRequestHandler):
         self._json(200 if ok else 500, payload)
 
 
-if __name__ == "__main__":
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Serve Cash Flow Marco artifacts and refresh endpoint")
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--open-browser", action="store_true", help="Open the dashboard URL in the default browser")
+    args = parser.parse_args()
+
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
-    server = ThreadingHTTPServer(("127.0.0.1", 8765), Handler)
-    print("Cash Flow dashboard server running on http://127.0.0.1:8765/cash_flow_marco.html")
+    handler = lambda *a, **kw: Handler(*a, directory=str(ARTIFACTS), **kw)
+    server = ThreadingHTTPServer((args.host, args.port), handler)
+    url = f"http://{args.host}:{args.port}/cash_flow_marco.html"
+    print(f"Cash Flow dashboard server running on {url}")
+
+    if args.open_browser:
+        webbrowser.open(url, new=2)
+        print("Attempted to open dashboard in your default browser.")
+
     server.serve_forever()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

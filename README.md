@@ -45,7 +45,7 @@ export MONARCH_EMAIL='your_email@example.com'
 export MONARCH_PASSWORD='your_password'
 export GOOGLE_SHEET_URL='https://docs.google.com/spreadsheets/d/.../edit?gid=...'
 
-python3 dashboard_server.py
+python3 dashboard_server.py --open-browser
 ```
 
 Open:
@@ -67,3 +67,9 @@ pip install monarchmoney
 
 ## Important note
 If direct login to private apps fails (2FA, MFA, package limitations, network policy), the dashboard still works with local CSV exports and will show warnings in the artifact.
+
+
+### Quick launch (opens browser automatically)
+```bash
+python3 dashboard_server.py --open-browser
+```
