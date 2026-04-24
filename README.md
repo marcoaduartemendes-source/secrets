@@ -1,6 +1,6 @@
 # Cash Flow Marco
 
-Local cash-flow project to model weekly cash position across **13, 26, and 52 weeks**.
+Local cash-flow project to model weekly cash position across **13, 26, and 52 weeks**, with a user-friendly dashboard and one-click refresh.
 
 ## What this does
 - Uses balances from selected cash accounts (`0974`, `7029`, `6278`, `6512`) as starting cash.
@@ -11,7 +11,7 @@ Local cash-flow project to model weekly cash position across **13, 26, and 52 we
   - Mortgage: **$19,561.60 monthly** starting **2026-05-01**.
 - Produces:
   - `artifacts/cash_flow_marco.json`
-  - `artifacts/cash_flow_marco.html` (visual artifact)
+  - `artifacts/cash_flow_marco.html` (interactive visual artifact)
 
 ## Input files
 Use CSV exports (local files):
@@ -25,16 +25,45 @@ Use CSV exports (local files):
 
 Only account last4 values `0974`, `7029`, `6278`, `6512` are used for starting cash and transaction filtering.
 
-## Run
+## Build artifacts
 ```bash
 python3 cash_flow_marco.py \
   --balances-csv balances.csv \
   --transactions-csv transactions.csv \
-  --sheet-csv sheet_expenses.csv
+  --sheet-csv sheet_expenses.csv \
+  --output-dir artifacts
 ```
 
 Then open:
 - `artifacts/cash_flow_marco.html`
 
+## Enable one-click refresh button (Monarch + Google Sheet)
+The HTML includes a **Refresh from Monarch + Google Sheet** button. For the button to work, run the local dashboard server:
+
+```bash
+export MONARCH_EMAIL='your_email@example.com'
+export MONARCH_PASSWORD='your_password'
+export GOOGLE_SHEET_URL='https://docs.google.com/spreadsheets/d/.../edit?gid=...'
+
+python3 dashboard_server.py
+```
+
+Open:
+- `http://127.0.0.1:8765/cash_flow_marco.html`
+
+When you click refresh, it runs:
+- `python3 cash_flow_marco.py --refresh ...`
+
+This will attempt to:
+1. Pull latest expenses CSV from Google Sheets export URL.
+2. Pull latest balances/transactions from Monarch (via `monarchmoney` Python package).
+3. Recompute and rewrite the JSON + HTML artifacts.
+
+## Dependency for Monarch refresh
+Install once (if not already installed):
+```bash
+pip install monarchmoney
+```
+
 ## Important note
-This environment cannot directly log into private web apps (Monarch) or private Google Sheets on your behalf. Export those files and place them locally, then run the script.
+If direct login to private apps fails (2FA, MFA, package limitations, network policy), the dashboard still works with local CSV exports and will show warnings in the artifact.

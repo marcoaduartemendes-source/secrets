@@ -1,5 +1,13 @@
 {
-  "start_cash": 267400.0,
+  "title": "Cash Flow Marco",
+  "generatedAt": "2026-04-24T17:23:23.998558Z",
+  "startCash": 267400.0,
+  "balances": {
+    "0974": 125000.0,
+    "7029": 84000.0,
+    "6278": 36500.0,
+    "6512": 21900.0
+  },
   "weeks": [
     {
       "week": 1,
@@ -48,7 +56,7 @@
           "date": "2026-05-09",
           "description": "Insurance",
           "amount": -4500.0,
-          "source": "unknown"
+          "source": "sheet"
         }
       ]
     },
@@ -65,7 +73,7 @@
           "date": "2026-05-16",
           "description": "Tuition",
           "amount": -8500.0,
-          "source": "unknown"
+          "source": "sheet"
         }
       ]
     },
@@ -105,7 +113,7 @@
           "date": "2026-06-02",
           "description": "Home Maintenance",
           "amount": -3200.0,
-          "source": "unknown"
+          "source": "sheet"
         }
       ]
     },
@@ -725,12 +733,14 @@
     {
       "date": "2026-05-09",
       "description": "Insurance",
-      "amount": -4500.0
+      "amount": -4500.0,
+      "source": "sheet"
     },
     {
       "date": "2026-05-16",
       "description": "Tuition",
-      "amount": -8500.0
+      "amount": -8500.0,
+      "source": "sheet"
     },
     {
       "date": "2026-05-25",
@@ -747,7 +757,8 @@
     {
       "date": "2026-06-02",
       "description": "Home Maintenance",
-      "amount": -3200.0
+      "amount": -3200.0,
+      "source": "sheet"
     },
     {
       "date": "2026-06-25",
@@ -869,5 +880,6 @@
       "amount": -19561.6,
       "source": "manual"
     }
-  ]
+  ],
+  "warnings": []
 }
