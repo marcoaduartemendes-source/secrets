@@ -1,0 +1,885 @@
+{
+  "title": "Cash Flow Marco",
+  "generatedAt": "2026-04-24T19:25:26.158527Z",
+  "startCash": 267400.0,
+  "balances": {
+    "0974": 125000.0,
+    "7029": 84000.0,
+    "6278": 36500.0,
+    "6512": 21900.0
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "start": "2026-04-24",
+      "end": "2026-04-30",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": 227400.0,
+      "events": [
+        {
+          "date": "2026-04-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "start": "2026-05-01",
+      "end": "2026-05-07",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": 207838.4,
+      "events": [
+        {
+          "date": "2026-05-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "start": "2026-05-08",
+      "end": "2026-05-14",
+      "inflow": 0.0,
+      "outflow": -4500.0,
+      "net": -4500.0,
+      "ending_cash": 203338.4,
+      "events": [
+        {
+          "date": "2026-05-09",
+          "description": "Insurance",
+          "amount": -4500.0,
+          "source": "sheet"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "start": "2026-05-15",
+      "end": "2026-05-21",
+      "inflow": 0.0,
+      "outflow": -8500.0,
+      "net": -8500.0,
+      "ending_cash": 194838.4,
+      "events": [
+        {
+          "date": "2026-05-16",
+          "description": "Tuition",
+          "amount": -8500.0,
+          "source": "sheet"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "start": "2026-05-22",
+      "end": "2026-05-28",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": 154838.4,
+      "events": [
+        {
+          "date": "2026-05-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "start": "2026-05-29",
+      "end": "2026-06-04",
+      "inflow": 0.0,
+      "outflow": -22761.6,
+      "net": -22761.6,
+      "ending_cash": 132076.8,
+      "events": [
+        {
+          "date": "2026-06-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        },
+        {
+          "date": "2026-06-02",
+          "description": "Home Maintenance",
+          "amount": -3200.0,
+          "source": "sheet"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "start": "2026-06-05",
+      "end": "2026-06-11",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 132076.8,
+      "events": []
+    },
+    {
+      "week": 8,
+      "start": "2026-06-12",
+      "end": "2026-06-18",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 132076.8,
+      "events": []
+    },
+    {
+      "week": 9,
+      "start": "2026-06-19",
+      "end": "2026-06-25",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": 92076.8,
+      "events": [
+        {
+          "date": "2026-06-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": 72515.2,
+      "events": [
+        {
+          "date": "2026-07-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 72515.2,
+      "events": []
+    },
+    {
+      "week": 12,
+      "start": "2026-07-10",
+      "end": "2026-07-16",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 72515.2,
+      "events": []
+    },
+    {
+      "week": 13,
+      "start": "2026-07-17",
+      "end": "2026-07-23",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 72515.2,
+      "events": []
+    },
+    {
+      "week": 14,
+      "start": "2026-07-24",
+      "end": "2026-07-30",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": 32515.2,
+      "events": [
+        {
+          "date": "2026-07-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 15,
+      "start": "2026-07-31",
+      "end": "2026-08-06",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": 12953.6,
+      "events": [
+        {
+          "date": "2026-08-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 16,
+      "start": "2026-08-07",
+      "end": "2026-08-13",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 12953.6,
+      "events": []
+    },
+    {
+      "week": 17,
+      "start": "2026-08-14",
+      "end": "2026-08-20",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": 12953.6,
+      "events": []
+    },
+    {
+      "week": 18,
+      "start": "2026-08-21",
+      "end": "2026-08-27",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -27046.4,
+      "events": [
+        {
+          "date": "2026-08-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 19,
+      "start": "2026-08-28",
+      "end": "2026-09-03",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -46608.0,
+      "events": [
+        {
+          "date": "2026-09-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 20,
+      "start": "2026-09-04",
+      "end": "2026-09-10",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -46608.0,
+      "events": []
+    },
+    {
+      "week": 21,
+      "start": "2026-09-11",
+      "end": "2026-09-17",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -46608.0,
+      "events": []
+    },
+    {
+      "week": 22,
+      "start": "2026-09-18",
+      "end": "2026-09-24",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -46608.0,
+      "events": []
+    },
+    {
+      "week": 23,
+      "start": "2026-09-25",
+      "end": "2026-10-01",
+      "inflow": 0.0,
+      "outflow": -59561.6,
+      "net": -59561.6,
+      "ending_cash": -106169.6,
+      "events": [
+        {
+          "date": "2026-09-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        },
+        {
+          "date": "2026-10-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 24,
+      "start": "2026-10-02",
+      "end": "2026-10-08",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -106169.6,
+      "events": []
+    },
+    {
+      "week": 25,
+      "start": "2026-10-09",
+      "end": "2026-10-15",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -106169.6,
+      "events": []
+    },
+    {
+      "week": 26,
+      "start": "2026-10-16",
+      "end": "2026-10-22",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -106169.6,
+      "events": []
+    },
+    {
+      "week": 27,
+      "start": "2026-10-23",
+      "end": "2026-10-29",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -146169.6,
+      "events": [
+        {
+          "date": "2026-10-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 28,
+      "start": "2026-10-30",
+      "end": "2026-11-05",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -165731.2,
+      "events": [
+        {
+          "date": "2026-11-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 29,
+      "start": "2026-11-06",
+      "end": "2026-11-12",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -165731.2,
+      "events": []
+    },
+    {
+      "week": 30,
+      "start": "2026-11-13",
+      "end": "2026-11-19",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -165731.2,
+      "events": []
+    },
+    {
+      "week": 31,
+      "start": "2026-11-20",
+      "end": "2026-11-26",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -205731.2,
+      "events": [
+        {
+          "date": "2026-11-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 32,
+      "start": "2026-11-27",
+      "end": "2026-12-03",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -225292.8,
+      "events": [
+        {
+          "date": "2026-12-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 33,
+      "start": "2026-12-04",
+      "end": "2026-12-10",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -225292.8,
+      "events": []
+    },
+    {
+      "week": 34,
+      "start": "2026-12-11",
+      "end": "2026-12-17",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -225292.8,
+      "events": []
+    },
+    {
+      "week": 35,
+      "start": "2026-12-18",
+      "end": "2026-12-24",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -225292.8,
+      "events": []
+    },
+    {
+      "week": 36,
+      "start": "2026-12-25",
+      "end": "2026-12-31",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -265292.8,
+      "events": [
+        {
+          "date": "2026-12-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 37,
+      "start": "2027-01-01",
+      "end": "2027-01-07",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -284854.4,
+      "events": [
+        {
+          "date": "2027-01-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 38,
+      "start": "2027-01-08",
+      "end": "2027-01-14",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -284854.4,
+      "events": []
+    },
+    {
+      "week": 39,
+      "start": "2027-01-15",
+      "end": "2027-01-21",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -284854.4,
+      "events": []
+    },
+    {
+      "week": 40,
+      "start": "2027-01-22",
+      "end": "2027-01-28",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -324854.4,
+      "events": [
+        {
+          "date": "2027-01-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 41,
+      "start": "2027-01-29",
+      "end": "2027-02-04",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -344416.0,
+      "events": [
+        {
+          "date": "2027-02-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 42,
+      "start": "2027-02-05",
+      "end": "2027-02-11",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -344416.0,
+      "events": []
+    },
+    {
+      "week": 43,
+      "start": "2027-02-12",
+      "end": "2027-02-18",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -344416.0,
+      "events": []
+    },
+    {
+      "week": 44,
+      "start": "2027-02-19",
+      "end": "2027-02-25",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -384416.0,
+      "events": [
+        {
+          "date": "2027-02-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 45,
+      "start": "2027-02-26",
+      "end": "2027-03-04",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -403977.6,
+      "events": [
+        {
+          "date": "2027-03-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 46,
+      "start": "2027-03-05",
+      "end": "2027-03-11",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -403977.6,
+      "events": []
+    },
+    {
+      "week": 47,
+      "start": "2027-03-12",
+      "end": "2027-03-18",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -403977.6,
+      "events": []
+    },
+    {
+      "week": 48,
+      "start": "2027-03-19",
+      "end": "2027-03-25",
+      "inflow": 0.0,
+      "outflow": -40000.0,
+      "net": -40000.0,
+      "ending_cash": -443977.6,
+      "events": [
+        {
+          "date": "2027-03-25",
+          "description": "Massachusetts Tax Bill",
+          "amount": -40000.0,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 49,
+      "start": "2027-03-26",
+      "end": "2027-04-01",
+      "inflow": 0.0,
+      "outflow": -19561.6,
+      "net": -19561.6,
+      "ending_cash": -463539.2,
+      "events": [
+        {
+          "date": "2027-04-01",
+          "description": "Mortgage",
+          "amount": -19561.6,
+          "source": "manual"
+        }
+      ]
+    },
+    {
+      "week": 50,
+      "start": "2027-04-02",
+      "end": "2027-04-08",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -463539.2,
+      "events": []
+    },
+    {
+      "week": 51,
+      "start": "2027-04-09",
+      "end": "2027-04-15",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -463539.2,
+      "events": []
+    },
+    {
+      "week": 52,
+      "start": "2027-04-16",
+      "end": "2027-04-22",
+      "inflow": 0.0,
+      "outflow": 0.0,
+      "net": 0.0,
+      "ending_cash": -463539.2,
+      "events": []
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-04-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-05-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-05-09",
+      "description": "Insurance",
+      "amount": -4500.0,
+      "source": "sheet"
+    },
+    {
+      "date": "2026-05-16",
+      "description": "Tuition",
+      "amount": -8500.0,
+      "source": "sheet"
+    },
+    {
+      "date": "2026-05-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-06-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-06-02",
+      "description": "Home Maintenance",
+      "amount": -3200.0,
+      "source": "sheet"
+    },
+    {
+      "date": "2026-06-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-07-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-07-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-08-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-08-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-09-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-09-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-10-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-10-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-11-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-11-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2026-12-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2026-12-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2027-01-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2027-01-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2027-02-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2027-02-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2027-03-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    },
+    {
+      "date": "2027-03-25",
+      "description": "Massachusetts Tax Bill",
+      "amount": -40000.0,
+      "source": "manual"
+    },
+    {
+      "date": "2027-04-01",
+      "description": "Mortgage",
+      "amount": -19561.6,
+      "source": "manual"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Cash Flow Marco</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; margin: 20px; background:#f7f9fc; color:#10243e; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    button { background:#0b5fff; color:#fff; border:none; border-radius:8px; padding:10px 14px; cursor:pointer; }
+    button:disabled { background:#9db7ff; cursor:not-allowed; }
+    .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:14px; }
+    .card { background:#fff; border:1px solid #e6ecf5; border-radius:10px; padding:12px; }
+    .muted { color:#5b6b82; font-size:12px; }
+    .warn { background:#fff7e8; border:1px solid #f8d188; border-radius:8px; padding:10px; margin-top:10px; }
+    svg { width:100%; height:300px; border:1px solid #e6ecf5; background:#fff; border-radius:10px; margin-top:12px; }
+    .tabs { margin:14px 0; display:flex; gap:8px; }
+    .tabs button { background:#eef3ff; color:#0b5fff; }
+    table { border-collapse: collapse; width:100%; background:#fff; font-size:12px; }
+    th, td { border:1px solid #e6ecf5; padding:7px; text-align:right; vertical-align:top; }
+    th:first-child, td:first-child, th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3), th:last-child, td:last-child { text-align:left; }
+    .neg { color:#b00020; font-weight:600; }
+    .pos { color:#0a7f30; font-weight:600; }
+  </style>
+</head>
+<body>
+  <div class='top'>
+    <div>
+      <h1 style='margin:0'>Cash Flow Marco</h1>
+      <div class='muted'>Generated at <span id='generated'></span></div>
+    </div>
+    <div>
+      <button id='refreshBtn' onclick='refreshData()'>🔄 Refresh from Monarch + Google Sheet</button>
+      <div class='muted' id='refreshState'></div>
+    </div>
+  </div>
+
+  <div id='warnings'></div>
+  <div class='cards' id='summary'></div>
+  <svg id='chart' viewBox='0 0 1000 300'></svg>
+
+  <div class='tabs'>
+    <button onclick='renderTable(13)'>13 weeks</button>
+    <button onclick='renderTable(26)'>26 weeks</button>
+    <button onclick='renderTable(52)'>52 weeks</button>
+  </div>
+  <table id='tbl'></table>
+<script>
+let data = {"title": "Cash Flow Marco", "startCash": 267400.0, "weeks": [{"week": 1, "start": "2026-04-24", "end": "2026-04-30", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": 227400.0, "events": [{"date": "2026-04-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 2, "start": "2026-05-01", "end": "2026-05-07", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": 207838.4, "events": [{"date": "2026-05-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 3, "start": "2026-05-08", "end": "2026-05-14", "inflow": 0.0, "outflow": -4500.0, "net": -4500.0, "ending_cash": 203338.4, "events": [{"date": "2026-05-09", "description": "Insurance", "amount": -4500.0, "source": "sheet"}]}, {"week": 4, "start": "2026-05-15", "end": "2026-05-21", "inflow": 0.0, "outflow": -8500.0, "net": -8500.0, "ending_cash": 194838.4, "events": [{"date": "2026-05-16", "description": "Tuition", "amount": -8500.0, "source": "sheet"}]}, {"week": 5, "start": "2026-05-22", "end": "2026-05-28", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": 154838.4, "events": [{"date": "2026-05-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 6, "start": "2026-05-29", "end": "2026-06-04", "inflow": 0.0, "outflow": -22761.6, "net": -22761.6, "ending_cash": 132076.8, "events": [{"date": "2026-06-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}, {"date": "2026-06-02", "description": "Home Maintenance", "amount": -3200.0, "source": "sheet"}]}, {"week": 7, "start": "2026-06-05", "end": "2026-06-11", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 132076.8, "events": []}, {"week": 8, "start": "2026-06-12", "end": "2026-06-18", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 132076.8, "events": []}, {"week": 9, "start": "2026-06-19", "end": "2026-06-25", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": 92076.8, "events": [{"date": "2026-06-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 10, "start": "2026-06-26", "end": "2026-07-02", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": 72515.2, "events": [{"date": "2026-07-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 11, "start": "2026-07-03", "end": "2026-07-09", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 72515.2, "events": []}, {"week": 12, "start": "2026-07-10", "end": "2026-07-16", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 72515.2, "events": []}, {"week": 13, "start": "2026-07-17", "end": "2026-07-23", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 72515.2, "events": []}, {"week": 14, "start": "2026-07-24", "end": "2026-07-30", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": 32515.2, "events": [{"date": "2026-07-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 15, "start": "2026-07-31", "end": "2026-08-06", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": 12953.6, "events": [{"date": "2026-08-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 16, "start": "2026-08-07", "end": "2026-08-13", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 12953.6, "events": []}, {"week": 17, "start": "2026-08-14", "end": "2026-08-20", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": 12953.6, "events": []}, {"week": 18, "start": "2026-08-21", "end": "2026-08-27", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -27046.4, "events": [{"date": "2026-08-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 19, "start": "2026-08-28", "end": "2026-09-03", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -46608.0, "events": [{"date": "2026-09-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 20, "start": "2026-09-04", "end": "2026-09-10", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -46608.0, "events": []}, {"week": 21, "start": "2026-09-11", "end": "2026-09-17", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -46608.0, "events": []}, {"week": 22, "start": "2026-09-18", "end": "2026-09-24", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -46608.0, "events": []}, {"week": 23, "start": "2026-09-25", "end": "2026-10-01", "inflow": 0.0, "outflow": -59561.6, "net": -59561.6, "ending_cash": -106169.6, "events": [{"date": "2026-09-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}, {"date": "2026-10-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 24, "start": "2026-10-02", "end": "2026-10-08", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -106169.6, "events": []}, {"week": 25, "start": "2026-10-09", "end": "2026-10-15", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -106169.6, "events": []}, {"week": 26, "start": "2026-10-16", "end": "2026-10-22", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -106169.6, "events": []}, {"week": 27, "start": "2026-10-23", "end": "2026-10-29", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -146169.6, "events": [{"date": "2026-10-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 28, "start": "2026-10-30", "end": "2026-11-05", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -165731.2, "events": [{"date": "2026-11-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 29, "start": "2026-11-06", "end": "2026-11-12", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -165731.2, "events": []}, {"week": 30, "start": "2026-11-13", "end": "2026-11-19", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -165731.2, "events": []}, {"week": 31, "start": "2026-11-20", "end": "2026-11-26", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -205731.2, "events": [{"date": "2026-11-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 32, "start": "2026-11-27", "end": "2026-12-03", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -225292.8, "events": [{"date": "2026-12-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 33, "start": "2026-12-04", "end": "2026-12-10", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -225292.8, "events": []}, {"week": 34, "start": "2026-12-11", "end": "2026-12-17", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -225292.8, "events": []}, {"week": 35, "start": "2026-12-18", "end": "2026-12-24", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -225292.8, "events": []}, {"week": 36, "start": "2026-12-25", "end": "2026-12-31", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -265292.8, "events": [{"date": "2026-12-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 37, "start": "2027-01-01", "end": "2027-01-07", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -284854.4, "events": [{"date": "2027-01-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 38, "start": "2027-01-08", "end": "2027-01-14", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -284854.4, "events": []}, {"week": 39, "start": "2027-01-15", "end": "2027-01-21", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -284854.4, "events": []}, {"week": 40, "start": "2027-01-22", "end": "2027-01-28", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -324854.4, "events": [{"date": "2027-01-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 41, "start": "2027-01-29", "end": "2027-02-04", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -344416.0, "events": [{"date": "2027-02-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 42, "start": "2027-02-05", "end": "2027-02-11", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -344416.0, "events": []}, {"week": 43, "start": "2027-02-12", "end": "2027-02-18", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -344416.0, "events": []}, {"week": 44, "start": "2027-02-19", "end": "2027-02-25", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -384416.0, "events": [{"date": "2027-02-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 45, "start": "2027-02-26", "end": "2027-03-04", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -403977.6, "events": [{"date": "2027-03-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 46, "start": "2027-03-05", "end": "2027-03-11", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -403977.6, "events": []}, {"week": 47, "start": "2027-03-12", "end": "2027-03-18", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -403977.6, "events": []}, {"week": 48, "start": "2027-03-19", "end": "2027-03-25", "inflow": 0.0, "outflow": -40000.0, "net": -40000.0, "ending_cash": -443977.6, "events": [{"date": "2027-03-25", "description": "Massachusetts Tax Bill", "amount": -40000.0, "source": "manual"}]}, {"week": 49, "start": "2027-03-26", "end": "2027-04-01", "inflow": 0.0, "outflow": -19561.6, "net": -19561.6, "ending_cash": -463539.2, "events": [{"date": "2027-04-01", "description": "Mortgage", "amount": -19561.6, "source": "manual"}]}, {"week": 50, "start": "2027-04-02", "end": "2027-04-08", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -463539.2, "events": []}, {"week": 51, "start": "2027-04-09", "end": "2027-04-15", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -463539.2, "events": []}, {"week": 52, "start": "2027-04-16", "end": "2027-04-22", "inflow": 0.0, "outflow": 0.0, "net": 0.0, "ending_cash": -463539.2, "events": []}], "balances": {"0974": 125000.0, "7029": 84000.0, "6278": 36500.0, "6512": 21900.0}, "warnings": [], "generatedAt": "2026-04-24T19:25:26.159709Z"};
+
+function fmt(n) {
+  const s = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD'}).format(n);
+  const klass = n < 0 ? 'neg' : 'pos';
+  return `<span class='${klass}'>${s}</span>`;
+}
+
+function renderWarnings() {
+  const el = document.getElementById('warnings');
+  if (!data.warnings || !data.warnings.length) { el.innerHTML = ''; return; }
+  el.innerHTML = data.warnings.map(w => `<div class='warn'>⚠️ ${w}</div>`).join('');
+}
+
+function renderSummary() {
+  document.getElementById('generated').textContent = data.generatedAt;
+  const wk13 = data.weeks[Math.min(12, data.weeks.length-1)]?.ending_cash ?? data.startCash;
+  const wk26 = data.weeks[Math.min(25, data.weeks.length-1)]?.ending_cash ?? data.startCash;
+  const wk52 = data.weeks[data.weeks.length-1]?.ending_cash ?? data.startCash;
+  const cards = [
+    ['Starting cash', fmt(data.startCash)],
+    ['Projected cash (13w)', fmt(wk13)],
+    ['Projected cash (26w)', fmt(wk26)],
+    ['Projected cash (52w)', fmt(wk52)],
+    ['Tracked accounts', Object.keys(data.balances).map(k=>`${k}: $${data.balances[k].toFixed(2)}`).join('<br>') || 'No balances loaded'],
+  ];
+  document.getElementById('summary').innerHTML = cards.map(([k,v]) => `<div class='card'><div class='muted'>${k}</div><div style='font-size:20px;margin-top:6px'>${v}</div></div>`).join('');
+}
+
+function renderChart() {
+  const svg = document.getElementById('chart');
+  const w = 1000, h = 300, pad = 40;
+  const vals = data.weeks.map(x=>x.ending_cash);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const span = Math.max(1, max-min);
+
+  const points = vals.map((v,i)=> {
+    const x = pad + i*((w-2*pad)/(vals.length-1));
+    const y = h-pad - ((v-min)/span)*(h-2*pad);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+
+  const zeroY = h-pad - ((0-min)/span)*(h-2*pad);
+  svg.innerHTML = `
+    <line x1='${pad}' y1='${zeroY}' x2='${w-pad}' y2='${zeroY}' stroke='#d8e2f2' stroke-dasharray='4 4'/>
+    <polyline points='${points}' fill='none' stroke='#0b5fff' stroke-width='3'/>
+  `;
+}
+
+function renderTable(n) {
+  const rows = data.weeks.slice(0,n);
+  let html = `<tr><th>Week</th><th>Start</th><th>End</th><th>Inflows</th><th>Outflows</th><th>Net</th><th>Ending Cash</th><th>Details</th></tr>`;
+  for (const r of rows) {
+    const det = (r.events || []).map(e => `${e.date} · ${e.description} (${Number(e.amount).toFixed(2)})`).join('<br>');
+    html += `<tr><td>${r.week}</td><td>${r.start}</td><td>${r.end}</td><td>${fmt(r.inflow)}</td><td>${fmt(r.outflow)}</td><td>${fmt(r.net)}</td><td>${fmt(r.ending_cash)}</td><td>${det || '-'}</td></tr>`;
+  }
+  document.getElementById('tbl').innerHTML = html;
+}
+
+async function reloadFromJson() {
+  const r = await fetch('cash_flow_marco.json?ts='+Date.now());
+  if (!r.ok) throw new Error('Could not load updated JSON artifact.');
+  data = await r.json();
+  renderWarnings(); renderSummary(); renderChart(); renderTable(13);
+}
+
+async function refreshData() {
+  const btn = document.getElementById('refreshBtn');
+  const state = document.getElementById('refreshState');
+  btn.disabled = true;
+  state.textContent = 'Refreshing data...';
+  try {
+    const r = await fetch('/api/refresh', {method: 'POST'});
+    const payload = await r.json();
+    if (!r.ok || payload.ok === false) throw new Error(payload.message || 'Refresh failed');
+    await reloadFromJson();
+    state.textContent = 'Refresh completed.';
+  } catch (e) {
+    state.textContent = 'Refresh unavailable from file:// mode. Start dashboard_server.py to enable.';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+renderWarnings(); renderSummary(); renderChart(); renderTable(13);
+</script>
+</body>
+</html>
