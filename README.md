@@ -37,6 +37,16 @@ python3 cash_flow_marco.py \
 Then open:
 - `artifacts/cash_flow_marco.html`
 
+If you want the dashboard shown directly in terminal output as well:
+```bash
+python3 cash_flow_marco.py \
+  --balances-csv balances.csv \
+  --transactions-csv transactions.csv \
+  --sheet-csv sheet_expenses.csv \
+  --output-dir artifacts \
+  --show-dashboard
+```
+
 ## Enable one-click refresh button (Monarch + Google Sheet)
 The HTML includes a **Refresh from Monarch + Google Sheet** button. For the button to work, run the local dashboard server:
 

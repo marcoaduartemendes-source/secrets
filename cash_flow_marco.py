@@ -486,6 +486,35 @@ def build_projection(
     }
 
 
+def print_dashboard_summary(json_path: Path, weeks_to_show: int = 13) -> None:
+    payload = json.loads(json_path.read_text(encoding="utf-8"))
+    title = payload.get("title", "Cash Flow Marco")
+    start_cash = float(payload.get("startCash", 0))
+    weeks = payload.get("weeks", [])
+
+    w13 = weeks[12]["ending_cash"] if len(weeks) >= 13 else start_cash
+    w26 = weeks[25]["ending_cash"] if len(weeks) >= 26 else start_cash
+    w52 = weeks[51]["ending_cash"] if len(weeks) >= 52 else (weeks[-1]["ending_cash"] if weeks else start_cash)
+
+    print()
+    print(f"{title} — Dashboard Snapshot")
+    print("=" * 56)
+    print(f"Starting cash: ${start_cash:,.2f}")
+    print(f"13-week ending cash: ${w13:,.2f}")
+    print(f"26-week ending cash: ${w26:,.2f}")
+    print(f"52-week ending cash: ${w52:,.2f}")
+    print("-" * 56)
+    print("Week | Start       | End         | Inflows     | Outflows    | Ending Cash")
+    print("-" * 56)
+
+    for row in weeks[:weeks_to_show]:
+        print(
+            f"{row['week']:>4} | {row['start']} | {row['end']} | "
+            f"${row['inflow']:>10,.2f} | ${row['outflow']:>10,.2f} | ${row['ending_cash']:>11,.2f}"
+        )
+    print()
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description="Build weekly cash-flow projections (13/26/52 weeks).")
     p.add_argument("--balances-csv", type=Path, default=Path("balances.csv"), help="CSV with account_last4,balance")
@@ -493,6 +522,7 @@ def main() -> int:
     p.add_argument("--sheet-csv", type=Path, default=Path("sheet_expenses.csv"), help="CSV export from Google Sheet expenses")
     p.add_argument("--output-dir", type=Path, default=Path("artifacts"))
     p.add_argument("--refresh", action="store_true", help="Refresh source data from Monarch + Google Sheet before recalculating")
+    p.add_argument("--show-dashboard", action="store_true", help="Print a terminal dashboard snapshot after generating artifacts")
     p.add_argument("--google-sheet-url", default=os.getenv("GOOGLE_SHEET_URL"), help="Google Sheet URL used for CSV refresh")
     p.add_argument("--monarch-email", default=os.getenv("MONARCH_EMAIL"), help="Monarch login email")
     p.add_argument("--monarch-password", default=os.getenv("MONARCH_PASSWORD"), help="Monarch login password")
@@ -514,6 +544,9 @@ def main() -> int:
     print(f"Detected recurring expense patterns: {result['recurring_count']}")
     for w in result["warnings"]:
         print(f"Warning: {w}")
+
+    if args.show_dashboard:
+        print_dashboard_summary(Path(result["json_path"]))
     return 0
 
 
