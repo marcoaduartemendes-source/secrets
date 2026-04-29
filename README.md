@@ -83,3 +83,8 @@ If direct login to private apps fails (2FA, MFA, package limitations, network po
 ```bash
 python3 dashboard_server.py --open-browser
 ```
+
+Or run everything (rebuild + launch) with one command:
+```bash
+bash launch_dashboard.sh
+```
