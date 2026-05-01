@@ -60,6 +60,7 @@ python3 dashboard_server.py --open-browser
 
 Open:
 - `http://127.0.0.1:8765/cash_flow_marco.html`
+- `http://127.0.0.1:8765/` (auto-redirects to the dashboard)
 
 When you click refresh, it runs:
 - `python3 cash_flow_marco.py --refresh ...`
@@ -83,6 +84,9 @@ If direct login to private apps fails (2FA, MFA, package limitations, network po
 ```bash
 python3 dashboard_server.py --open-browser
 ```
+
+If artifacts are missing, `dashboard_server.py` now auto-generates
+`artifacts/cash_flow_marco.html` and `artifacts/cash_flow_marco.json` at startup.
 
 Or run everything (rebuild + launch) with one command:
 ```bash

@@ -8,6 +8,7 @@ import subprocess
 import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 ARTIFACTS = ROOT / "artifacts"
@@ -24,6 +25,12 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(raw)))
         self.end_headers()
         self.wfile.write(raw)
+
+    def do_GET(self) -> None:  # noqa: N802
+        parsed = urlparse(self.path)
+        if parsed.path == "/":
+            self.path = "/cash_flow_marco.html"
+        return super().do_GET()
 
     def do_POST(self) -> None:  # noqa: N802
         if self.path != "/api/refresh":
@@ -55,6 +62,32 @@ class Handler(SimpleHTTPRequestHandler):
         self._json(200 if ok else 500, payload)
 
 
+def ensure_artifacts_exist() -> None:
+    html_path = ARTIFACTS / "cash_flow_marco.html"
+    json_path = ARTIFACTS / "cash_flow_marco.json"
+    if html_path.exists() and json_path.exists():
+        return
+
+    cmd = [
+        "python3",
+        str(ROOT / "cash_flow_marco.py"),
+        "--balances-csv",
+        str(ROOT / "balances.csv"),
+        "--transactions-csv",
+        str(ROOT / "transactions.csv"),
+        "--sheet-csv",
+        str(ROOT / "sheet_expenses.csv"),
+        "--output-dir",
+        str(ARTIFACTS),
+    ]
+    proc = subprocess.run(cmd, capture_output=True, text=True, env=os.environ.copy())
+    if proc.returncode != 0:
+        raise RuntimeError(
+            "Could not generate dashboard artifacts automatically.\n"
+            f"stdout:\n{proc.stdout}\n\nstderr:\n{proc.stderr}"
+        )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Serve Cash Flow Marco artifacts and refresh endpoint")
     parser.add_argument("--host", default="127.0.0.1")
@@ -63,6 +96,7 @@ def main() -> int:
     args = parser.parse_args()
 
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
+    ensure_artifacts_exist()
     handler = lambda *a, **kw: Handler(*a, directory=str(ARTIFACTS), **kw)
     server = ThreadingHTTPServer((args.host, args.port), handler)
     url = f"http://{args.host}:{args.port}/cash_flow_marco.html"
